@@ -46,6 +46,7 @@ type
     {$ELSE}
     function &To ( aPatch : String; aComponent : TPanel ) : iRouter4DLink; overload;
     function Animation ( aAnimation : TProc<TPanel> ) : iRouter4DLink;
+    function RouterToForm( aPatch : String) : TForm;
     {$ENDIF}
     function &To ( aPatch : String) : iRouter4DLink; overload;
     function &To ( aPatch : String; aProps : TProps; aKey : String = '') : iRouter4DLink; overload;

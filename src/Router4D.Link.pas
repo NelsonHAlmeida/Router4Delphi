@@ -9,6 +9,7 @@ uses
   FMX.Types,
   FMX.Layouts,
   {$ELSE}
+  Vcl.Forms,
   Vcl.ExtCtrls,
   Router4D.Helper,
   {$ENDIF}
@@ -34,6 +35,7 @@ type
     {$ELSE}
     function Animation ( aAnimation : TProc<TPanel> ) : iRouter4DLink;
     function &To ( aPatch : String; aComponent : TPanel ) : iRouter4DLink; overload;
+    function RouterToForm( aPatch : string) : TForm;
     {$ENDIF}
     function &To ( aPatch : String) : iRouter4DLink; overload;
     function &To ( aPatch : String; aProps : TProps; aKey : String = '') : iRouter4DLink; overload;
@@ -91,6 +93,14 @@ begin
         .GetHistory(aPatch)
         .Render
     );
+end;
+
+function TRouter4DLink.RouterToForm( aPatch : String) : TForm;
+begin
+  Result := Router4DHistory
+             .addCacheHistory(aPatch)
+             .GetHistory(aPatch)
+             .Render;
 end;
 {$ENDIF}
 
