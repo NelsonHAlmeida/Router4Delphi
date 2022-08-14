@@ -34,7 +34,7 @@ type
     function &To ( aPatch : String; aComponent : TFMXObject ) : iRouter4DLink; overload;
     {$ELSE}
     function Animation ( aAnimation : TProc<TPanel> ) : iRouter4DLink;
-    function &To ( aPatch : String; aComponent : TPanel ) : iRouter4DLink; overload;
+    function &To ( aPatch : String; aComponent : TPanel; aCache : Boolean = True ) : iRouter4DLink; overload;
     function RouterToForm( aPatch : string) : TForm;
     {$ENDIF}
     function &To ( aPatch : String) : iRouter4DLink; overload;
@@ -81,18 +81,26 @@ begin
   FAnimation := aAnimation;
 end;
 
-function TRouter4DLink.&To( aPatch : String; aComponent : TPanel ) : iRouter4DLink;
+function TRouter4DLink.&To( aPatch : String; aComponent : TPanel ; aCache : Boolean = True ) : iRouter4DLink;
 begin
   Result := Self;
   aComponent.RemoveObject;
   Router4DHistory.InstanteObject.UnRender;
-  aComponent
-    .AddObject(
-      Router4DHistory
-        .addCacheHistory(aPatch)
-        .GetHistory(aPatch)
-        .Render
-    );
+  if aCache then
+    aComponent
+      .AddObject(
+        Router4DHistory
+          .addCacheHistory(aPatch)
+          .GetHistory(aPatch)
+          .Render
+      )
+   else
+     aComponent
+      .AddObject(
+        Router4DHistory
+          .GetHistory(aPatch)
+          .Render
+      );
 end;
 
 function TRouter4DLink.RouterToForm( aPatch : String) : TForm;

@@ -44,7 +44,7 @@ type
     function &To ( aPatch : String; aComponent : TFMXObject ) : iRouter4DLink; overload;
     function Animation ( aAnimation : TProc<TFMXObject> ) : iRouter4DLink;
     {$ELSE}
-    function &To ( aPatch : String; aComponent : TPanel ) : iRouter4DLink; overload;
+    function &To ( aPatch : String; aComponent : TPanel ; aCache : Boolean = True) : iRouter4DLink; overload;
     function Animation ( aAnimation : TProc<TPanel> ) : iRouter4DLink;
     function RouterToForm( aPatch : String) : TForm;
     {$ENDIF}

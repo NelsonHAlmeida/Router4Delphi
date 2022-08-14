@@ -75,6 +75,7 @@ type
       function BreadCrumb(aDelimiter: char = '/') : String;
       function addCacheHistory(aKey : String) : TRouter4DHistory;
       function IndexCache : Integer;
+      function ListCacheOrder : TList<String>;
   end;
 
 var
@@ -315,6 +316,11 @@ end;
 function TRouter4DHistory.InstanteObject: iRouter4DComponent;
 begin
   Result := FInstanteObject;
+end;
+
+function TRouter4DHistory.ListCacheOrder: TList<String>;
+begin
+  Result := FListCacheOrder;
 end;
 
 function TRouter4DHistory.RemoveHistory(aKey: String): TRouter4DHistory;
