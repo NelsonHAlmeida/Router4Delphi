@@ -106,7 +106,7 @@ end;
 function TRouter4DLink.RouterToForm( aPatch : String) : TForm;
 begin
   Result := Router4DHistory
-             .addCacheHistory(aPatch)
+//             .addCacheHistory(aPatch)
              .GetHistory(aPatch)
              .Render;
 end;
